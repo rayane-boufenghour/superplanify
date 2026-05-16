@@ -2,5 +2,13 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss']
+  modules: ['@nuxtjs/tailwindcss'],
+  app : {
+    head : {
+      title: 'SuperPlanify',
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/favicon.png'},
+      ],
+    },
+  },
 })

@@ -3,20 +3,26 @@ const isMenuOpen = ref(false)
 
 const navLinks = [
   { label: 'Features', href: '#' },
-  { label: 'How it works', href: '#' },
   { label: 'Pricing', href: '#' },
 ]
 </script>
 
 <template>
-  <nav class="rounded-2xl border border-blue-500/30 bg-[#071226]/80 px-6 py-4 backdrop-blur">
-    <div class="flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="h-10 w-10 rounded-xl border border-blue-400/40 bg-blue-500/10" />
-        <span class="text-xl font-semibold tracking-tight">SuperPlanify</span>
-      </div>
+  <nav class="sticky top-0 z-50 w-full border-b border-blue-500/20 bg-black/90 px-6 py-4 shadow-lg shadow-black/30 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <img
+          src="/images/superplanify_logo.png"
+          alt="SuperPlanify logo"
+          class="h-14 w-14 object-contain"
+        >
 
-      <div class="hidden items-center gap-10 text-sm text-slate-300 md:flex">
+        <span class="text-xl font-semibold tracking-tight">
+          SuperPlanify
+        </span>
+      </a>
+
+      <div class="hidden items-center gap-10 text-base font-semibold text-slate-300 md:flex">
         <a
           v-for="link in navLinks"
           :key="link.label"
@@ -50,7 +56,7 @@ const navLinks = [
     <Transition name="mobile-menu">
       <div
         v-if="isMenuOpen"
-        class="mt-5 space-y-4 border-t border-blue-500/20 pt-5 md:hidden"
+        class="mx-auto mt-5 max-w-7xl space-y-4 border-t border-blue-500/20 pt-5 md:hidden"
       >
         <a
           v-for="link in navLinks"
