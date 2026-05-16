@@ -1,0 +1,35 @@
+{
+  "nav": {
+    "features": "Fonctionnalités",
+    "pricing": "Tarifs",
+    "contact": "Contact",
+    "login": "Connexion",
+    "createAccount": "Créer un compte"
+  },
+  "home": {
+    "badge": "Tous vos emplois du temps. Une seule plateforme.",
+    "titleLine1": "Centralisez. Organisez.",
+    "titleLine2": "Gardez une longueur d’avance.",
+    "subtitle": "SuperPlanify aide les particuliers et les organisations à gérer leurs emplois du temps, changements et notifications au même endroit.",
+    "ctaUser": "Créer mon compte",
+    "ctaOrganization": "Pour les organisations"
+  },
+  "features": {
+    "allSchedules": {
+      "title": "Tous vos plannings",
+      "description": "Regroupez vos emplois du temps d’école, de travail, de sport et personnels au même endroit."
+    },
+    "realTimeUpdates": {
+      "title": "Mises à jour en temps réel",
+      "description": "Restez synchronisé quand un cours, une session ou un événement est déplacé."
+    },
+    "workflows": {
+      "title": "Workflows sans friction",
+      "description": "Remplacez les e-mails dispersés, les groupes WhatsApp et les décisions de couloir par des demandes structurées."
+    },
+    "peopleTeams": {
+      "title": "Pour particuliers et équipes",
+      "description": "Rejoignez des emplois du temps existants en tant que particulier, ou créez et gérez une organisation."
+    }
+  }
+}

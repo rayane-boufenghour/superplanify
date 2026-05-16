@@ -1,0 +1,35 @@
+{
+  "nav": {
+    "features": "Features",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "login": "Log in",
+    "createAccount": "Create account"
+  },
+  "home": {
+    "badge": "All your schedules. One smart platform.",
+    "titleLine1": "Centralize. Organize.",
+    "titleLine2": "Stay one step ahead.",
+    "subtitle": "SuperPlanify helps people and organizations manage schedules, changes and notifications in one place.",
+    "ctaUser": "Create my account",
+    "ctaOrganization": "For organizations"
+  },
+  "features": {
+    "allSchedules": {
+        "title": "All schedules",
+        "description": "Bring school, work, training and personal schedules together in one place."
+    },
+    "realTimeUpdates": {
+        "title": "Real-time updates",
+        "description": "Stay aligned when classes, sessions or events move."
+    },
+    "workflows": {
+        "title": "Frictionless workflows",
+        "description": "Replace scattered emails, WhatsApp groups and hallway decisions with structured requests."
+    },
+    "peopleTeams": {
+        "title": "Built for people & teams",
+        "description": "Join existing schedules as an individual, or create and manage an organization."
+    }
+  }
+}

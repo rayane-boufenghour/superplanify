@@ -2,8 +2,9 @@
 const isMenuOpen = ref(false)
 
 const navLinks = [
-  { label: 'Features', href: '#' },
-  { label: 'Pricing', href: '#' },
+  { labelKey: 'nav.features', href: '#' },
+  { labelKey: 'nav.pricing', href: '#' },
+  { labelKey: 'nav.contact', href: '#' },
 ]
 </script>
 
@@ -22,58 +23,62 @@ const navLinks = [
         </span>
       </a>
 
-      <div class="hidden items-center gap-10 text-base font-semibold text-slate-300 md:flex">
+      <div class="hidden items-center gap-10 text-base font-semibold text-slate-300 lg:flex">
         <a
           v-for="link in navLinks"
-          :key="link.label"
+          :key="link.labelKey"
           :href="link.href"
           class="transition hover:text-white"
         >
-          {{ link.label }}
+          {{ $t(link.labelKey) }}
         </a>
       </div>
 
-      <div class="hidden items-center gap-3 md:flex">
-        <button class="rounded-xl border border-blue-500/30 px-5 py-2 text-sm text-slate-200 transition hover:border-blue-400 hover:text-white">
-          Log in
-        </button>
+      <div class="flex items-center gap-3">
+        <LanguageSwitcher />
 
-        <button class="rounded-xl bg-blue-600 px-5 py-2 text-sm font-medium text-white transition hover:bg-blue-500">
-          Create account
+        <div class="hidden items-center gap-3 lg:flex">
+          <button class="rounded-xl border border-blue-500/30 px-5 py-2 text-sm text-slate-200 transition hover:border-blue-400 hover:text-white">
+            {{ $t('nav.login') }}
+          </button>
+
+          <button class="rounded-xl bg-blue-600 px-5 py-2 text-sm font-medium text-white transition hover:bg-blue-500">
+            {{ $t('nav.createAccount') }}
+          </button>
+        </div>
+
+        <button
+          class="rounded-xl border border-blue-500/30 px-3 py-2 text-slate-200 transition hover:border-blue-400 hover:text-white lg:hidden"
+          :aria-label="isMenuOpen ? 'Close menu' : 'Open menu'"
+          @click="isMenuOpen = !isMenuOpen"
+        >
+          <span v-if="!isMenuOpen">☰</span>
+          <span v-else>✕</span>
         </button>
       </div>
-
-      <button
-        class="rounded-xl border border-blue-500/30 px-3 py-2 text-slate-200 transition hover:border-blue-400 hover:text-white md:hidden"
-        :aria-label="isMenuOpen ? 'Close menu' : 'Open menu'"
-        @click="isMenuOpen = !isMenuOpen"
-      >
-        <span v-if="!isMenuOpen">☰</span>
-        <span v-else>✕</span>
-      </button>
     </div>
 
     <Transition name="mobile-menu">
       <div
         v-if="isMenuOpen"
-        class="mx-auto mt-5 max-w-7xl space-y-4 border-t border-blue-500/20 pt-5 md:hidden"
+        class="mx-auto mt-5 max-w-7xl space-y-4 border-t border-blue-500/20 pt-5 lg:hidden"
       >
         <a
           v-for="link in navLinks"
-          :key="link.label"
+          :key="link.labelKey"
           :href="link.href"
-          class="block text-sm text-slate-300 transition hover:text-white"
+          class="block text-base font-semibold text-slate-300 transition hover:text-white"
         >
-          {{ link.label }}
+          {{ $t(link.labelKey) }}
         </a>
 
         <div class="flex flex-col gap-3 pt-2">
           <button class="rounded-xl border border-blue-500/30 px-5 py-2 text-sm text-slate-200 transition hover:border-blue-400 hover:text-white">
-            Log in
+            {{ $t('nav.login') }}
           </button>
 
           <button class="rounded-xl bg-blue-600 px-5 py-2 text-sm font-medium text-white transition hover:bg-blue-500">
-            Create account
+            {{ $t('nav.createAccount') }}
           </button>
         </div>
       </div>
