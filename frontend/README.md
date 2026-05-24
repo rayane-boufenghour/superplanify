@@ -73,3 +73,15 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+
+## Security
+
+Check for vulnerable packages using :
+
+pnpm audit
+
+Check for outdated packages using :
+
+pnpm outdated
+
