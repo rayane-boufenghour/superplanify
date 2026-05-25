@@ -1,5 +1,19 @@
 <script setup lang="ts">
+definePageMeta({
+  middleware: () => {
+    const user = useUser()
+
+    if (user.value?.email_verified === true) {
+      return navigateTo('/app')
+    }
+  },
+})
+
 const user = useUser()
+
+const shouldShowEmailVerificationBanner = computed(() => {
+  return Boolean(user.value && user.value.email_verified === false)
+})
 
 const features = [
   {
@@ -27,6 +41,11 @@ const features = [
 
     <div class="relative z-10">
       <LandingNavbar />
+
+      <AuthEmailVerificationBanner
+        v-if="shouldShowEmailVerificationBanner"
+        :email="user?.email"
+      />
 
       <div class="mx-auto max-w-7xl px-6">
         <section class="mx-auto flex max-w-5xl flex-col items-center px-4 pb-20 pt-16 text-center">

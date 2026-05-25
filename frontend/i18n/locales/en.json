@@ -1,4 +1,7 @@
 {
+  "common":{
+    "dismiss":"Dismiss"
+  },
   "nav": {
     "features": "Features",
     "pricing": "Pricing",
@@ -14,6 +17,14 @@
     "subtitle": "SuperPlanify helps people and organizations manage schedules, changes and notifications in one place.",
     "ctaUser": "Create my account",
     "ctaOrganization": "For organizations"
+  },
+  "members":{
+    "welcome": "Welcome to your profile.",
+    "signed_in_as": "Signed in as"
+  },
+  "auth": {
+    "verify_email": "Please verify your email address.",
+    "confirmation_sent": "We sent a confirmation link to"
   },
   "features": {
     "allSchedules": {

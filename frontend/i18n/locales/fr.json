@@ -1,4 +1,7 @@
 {
+  "common":{
+    "dismiss":"Masquer"
+  },
   "nav": {
     "features": "Fonctionnalités",
     "pricing": "Tarifs",
@@ -14,6 +17,14 @@
     "subtitle": "SuperPlanify aide les particuliers et les organisations à gérer leurs emplois du temps, changements et notifications au même endroit.",
     "ctaUser": "Créer mon compte",
     "ctaOrganization": "Pour les organisations"
+  },
+  "members":{
+    "welcome": "Bienvenue sur votre profil.",
+    "signed_in_as": "Connecté en tant que"
+  },
+   "auth": {
+    "verify_email": "Veuillez vérifier votre adresse e-mail.",
+    "confirmation_sent": "Nous avons envoyé un e-mail de confirmation à"
   },
   "features": {
     "allSchedules": {
