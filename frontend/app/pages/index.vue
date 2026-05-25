@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const user = useUser()
+
 const features = [
   {
     titleKey: 'features.allSchedules.title',

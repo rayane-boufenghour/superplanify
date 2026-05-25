@@ -4,8 +4,18 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@nuxtjs/tailwindcss', 
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@auth0/auth0-nuxt'
   ],
+  runtimeConfig: {
+    auth0: {
+      domain: process.env.NUXT_AUTH0_DOMAIN,
+      clientId: process.env.NUXT_AUTH0_CLIENT_ID,
+      clientSecret: process.env.NUXT_AUTH0_CLIENT_SECRET,
+      sessionSecret: process.env.NUXT_AUTH0_SESSION_SECRET,
+      appBaseUrl: process.env.NUXT_AUTH0_APP_BASE_URL,
+    },
+  },
   i18n: {
     locales: [
       { code: 'en', name: 'English', language: 'en-US', file: 'en.json' },
