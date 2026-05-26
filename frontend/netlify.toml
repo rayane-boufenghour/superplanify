@@ -1,0 +1,11 @@
+[build]
+  base = "frontend"
+  command = "pnpm build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NETLIFY_NEXT_SKEW_PROTECTION = "true"
+
