@@ -1,16 +1,15 @@
 import {getTranslations} from 'next-intl/server'
 
 export default async function MemberHomePage() {
-  const t = await getTranslations("members")
+    const t = await getTranslations("members")
   return (
     <div>
-
       <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
-        {t("orgs")}
+        {t("scheds")}
       </h1>
 
       <p className="mt-4 max-w-2xl leading-7 text-slate-300">
-        {t("orgs_intro")}
+        {t("scheds_intro")}
       </p>
     </div>
   )

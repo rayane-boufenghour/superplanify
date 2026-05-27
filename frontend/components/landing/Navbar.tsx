@@ -8,9 +8,8 @@ import LanguageSwitcher from '@/components/common/LanguageSwitcher'
 import AuthButtons from '@/components/auth/AuthButtons'
 
 const navLinks = [
-  {labelKey: 'features', href: '#features'},
-  {labelKey: 'pricing', href: '#pricing'},
-  {labelKey: 'contact', href: '#contact'},
+  {labelKey: 'pricing', href: '/pricing'},
+  {labelKey: 'contact', href: '/contact'},
 ] as const
 
 export default function Navbar() {

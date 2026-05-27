@@ -1,6 +1,7 @@
 {
-  "common":{
-    "dismiss":"Dismiss"
+  "common": {
+    "dismiss": "Dismiss",
+    "app": "Go to application"
   },
   "nav": {
     "features": "Features",
@@ -15,33 +16,109 @@
     "titleLine1": "Centralize. Organize.",
     "titleLine2": "Stay one step ahead.",
     "subtitle": "SuperPlanify helps people and organizations manage schedules, changes and notifications in one place.",
-    "ctaUser": "Create my account",
-    "ctaOrganization": "For organizations"
+    "ctaUser": "Start planning",
+    "ctaOrganization": "For organizations",
+    "useApp": "Open application "
   },
-  "members":{
-    "welcome": "Welcome to your profile.",
-    "signed_in_as": "Signed in as"
-  },
-  "auth": {
-    "verify_email": "Please verify your email address.",
-    "confirmation_sent": "We sent a confirmation link to"
+  "members": {
+    "memberarea": "Member area",
+    "orgs": "Organizations",
+    "scheds": "Schedules",
+    "billing": "Biling",
+    "settings": "Settings",
+    "orgs_intro": "This is where you will create, manage and organize your SuperPlanify organizations.",
+    "settings_intro": "This is where you change your application settings and preferences.",
+    "billing_intro": "This is where you choose your plan.",
+    "scheds_intro": "This is where you see and manage your schedules."
   },
   "features": {
     "allSchedules": {
-        "title": "All schedules",
-        "description": "Bring school, work, training and personal schedules together in one place."
+      "title": "All schedules",
+      "description": "Bring school, work, training and personal schedules together in one place."
     },
     "realTimeUpdates": {
-        "title": "Real-time updates",
-        "description": "Stay aligned when classes, sessions or events move."
+      "title": "Real-time updates",
+      "description": "Stay aligned when classes, sessions or events move."
     },
     "workflows": {
-        "title": "Frictionless workflows",
-        "description": "Replace scattered emails, WhatsApp groups and hallway decisions with structured requests."
+      "title": "Frictionless workflows",
+      "description": "Replace scattered emails, WhatsApp groups and hallway decisions with structured requests."
     },
     "peopleTeams": {
-        "title": "Built for people & teams",
-        "description": "Join existing schedules as an individual, or create and manage an organization."
+      "title": "Built for people & teams",
+      "description": "Join existing schedules as an individual, or create and manage an organization."
+    }
+  },
+  "pricing": {
+    "popular": "Popular",
+    "eyebrow": "Pricing",
+    "title": "Simple plans for every stage.",
+    "subtitle": "Start small, grow when you need more capacity, and contact us when your organization needs a tailored plan.",
+    "backHome": "Back to home",
+    "plans": {
+      "free": {
+        "name": "Free",
+        "description": "For individuals and very small teams getting started.",
+        "price": "$0",
+        "period": "/ month forever",
+        "cta": "Start planning",
+        "features": [
+          "Create 1 organization",
+          "Generate 10 schedules",
+          "Invite up to 10 members"
+        ]
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "For growing organizations that need more room.",
+        "price": "$10",
+        "period": "/ month",
+        "cta": "Upgrade to Pro",
+        "features": [
+          "Create up to 5 organizations",
+          "Unlimited schedules",
+          "Invite up to 100 members per organization"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "For larger organizations with specific needs.",
+        "price": "Custom",
+        "period": "",
+        "cta": "Contact sales",
+        "features": [
+          "Need more capacity?",
+          "Discuss your requirements with us",
+          "Receive a quote tailored to your needs"
+        ]
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let’s talk about your scheduling needs.",
+    "subtitle": "Send us a message for suggestions, quotes or anything else related to SuperPlanify.",
+    "form": {
+      "reason": {
+        "label": "Reason",
+        "options": {
+          "suggestions": "Suggestions",
+          "quote": "Quote",
+          "other": "Other"
+        }
+      },
+      "email": {
+        "label": "Your email",
+        "placeholder": "you@example.com",
+        "error": "Please enter your email address."
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Tell us what you need...",
+        "error": "Please enter a message."
+      },
+      "submit": "Send",
+      "success_message": "Thank you for your message. We'll get back to you as soon as possible."
     }
   }
 }

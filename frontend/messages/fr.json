@@ -1,6 +1,7 @@
 {
-  "common":{
-    "dismiss":"Masquer"
+  "common": {
+    "dismiss": "Masquer",
+    "app": "Aller dans l'application"
   },
   "nav": {
     "features": "Fonctionnalités",
@@ -15,16 +16,20 @@
     "titleLine1": "Centralisez. Organisez.",
     "titleLine2": "Gardez une longueur d’avance.",
     "subtitle": "SuperPlanify aide les particuliers et les organisations à gérer leurs emplois du temps, changements et notifications au même endroit.",
-    "ctaUser": "Créer mon compte",
-    "ctaOrganization": "Pour les organisations"
+    "ctaUser": "Commencez à planifier",
+    "ctaOrganization": "Pour les organisations",
+    "useApp": "Ouvrir l'application "
   },
-  "members":{
-    "welcome": "Bienvenue sur votre profil.",
-    "signed_in_as": "Connecté en tant que"
-  },
-   "auth": {
-    "verify_email": "Veuillez vérifier votre adresse e-mail.",
-    "confirmation_sent": "Nous avons envoyé un e-mail de confirmation à"
+  "members": {
+    "memberarea": "Espace membre",
+    "orgs": "Organisations",
+    "scheds": "Emplois du temps",
+    "billing": "Facturation",
+    "settings": "Préférences",
+    "orgs_intro": "C'est ici que vous créez, gérez et organisez vos organisations dans SuperPlanify.",
+    "settings_intro": "C'est ici que vous gérez vos paramètres et préférences d'utilisation.",
+    "billing_intro": "C'est ici que vous choisissez votre formule.",
+    "scheds_intro": "C'est ici que vous voyez et gérez vos emplois du temps."
   },
   "features": {
     "allSchedules": {
@@ -42,6 +47,78 @@
     "peopleTeams": {
       "title": "Pour particuliers et équipes",
       "description": "Rejoignez des emplois du temps existants en tant que particulier, ou créez et gérez une organisation."
+    }
+  },
+  "pricing": {
+    "popular": "Populaire",
+    "eyebrow": "Tarifs",
+    "title": "Des formules simples pour chaque étape.",
+    "subtitle": "Commencez simplement, évoluez quand vous avez besoin de plus de capacités, et contactez-nous pour une offre adaptée à votre organisation.",
+    "backHome": "Retour à l’accueil",
+    "plans": {
+      "free": {
+        "name": "Free",
+        "description": "Pour les particuliers et les très petites équipes qui démarrent.",
+        "price": "0 $",
+        "period": "/ mois pour toujours",
+        "cta": "Start planning",
+        "features": [
+          "Créez 1 organisation",
+          "Générez 10 emplois du temps",
+          "Invitez jusqu’à 10 membres"
+        ]
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "Pour les organisations en croissance qui ont besoin de plus de marge.",
+        "price": "10 $",
+        "period": "/ mois",
+        "cta": "Passer à Pro",
+        "features": [
+          "Créez jusqu’à 5 organisations",
+          "Emplois du temps illimités",
+          "Invitez jusqu’à 100 membres par organisation"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "Pour les grandes organisations avec des besoins spécifiques.",
+        "price": "Sur devis",
+        "period": "",
+        "cta": "Contacter l’équipe commerciale",
+        "features": [
+          "Besoin de plus de capacités ?",
+          "Échangez avec nous sur vos besoins",
+          "Recevez un devis adapté à votre organisation"
+        ]
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Parlons de vos besoins de planification.",
+    "subtitle": "Envoyez-nous un message pour une suggestion, un devis ou toute autre demande liée à SuperPlanify.",
+    "form": {
+      "reason": {
+        "label": "Motif",
+        "options": {
+          "suggestions": "Suggestions",
+          "quote": "Devis",
+          "other": "Autre"
+        }
+      },
+      "email": {
+        "label": "Votre e-mail",
+        "placeholder": "vous@exemple.com",
+        "error": "Veuillez saisir votre adresse e-mail."
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Décrivez votre besoin...",
+        "error": "Veuillez saisir un message."
+      },
+      "submit": "Envoyer",
+      "success_message": "Merci pour votre message. Nous reviendrons vers vous dès que possible."
     }
   }
 }
