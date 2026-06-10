@@ -94,7 +94,7 @@ export default function AppSidebar() {
     return (
         <>
             <header className="sticky top-0 z-40 flex items-center justify-between border-b border-blue-500/20 bg-black/90 px-5 py-4 shadow-lg shadow-black/30 backdrop-blur lg:hidden">
-                <Link href="/app" className="flex items-center gap-3">
+                <Link href="/" className="flex items-center gap-3">
                     <Image
                         src="/images/superplanify_logo.png"
                         alt="SuperPlanify logo"

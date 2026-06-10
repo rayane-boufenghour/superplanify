@@ -4,9 +4,6 @@ import FeatureCard from '@/components/landing/FeatureCard'
 import Footer from '@/components/landing/Footer'
 import HeroActions from '@/components/landing/HeroActions'
 
-import {auth} from '@clerk/nextjs/server'
-import {redirect} from '@/i18n/routing'
-
 const features = [
   {
     titleKey: 'features.allSchedules.title',
@@ -26,13 +23,8 @@ const features = [
   },
 ] as const
 
-type HomePageProps = {
-  params: Promise<{
-    locale: 'en' | 'fr'
-  }>
-}
 
-export default async function HomePage({params}: HomePageProps) {
+export default async function HomePage() {
   const t = await getTranslations()
 
   return (
@@ -86,8 +78,4 @@ export default async function HomePage({params}: HomePageProps) {
       </div>
     </main>
   )
-}
-
-function SignedOutButtons() {
-  return null
 }
