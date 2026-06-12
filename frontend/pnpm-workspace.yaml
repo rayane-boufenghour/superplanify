@@ -1,5 +1,10 @@
+packages:
+  - "frontend"
+
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver
+
 onlyBuiltDependencies:
   - '@clerk/shared'
+
