@@ -1,10 +1,18 @@
 packages:
   - "frontend"
 
+allowBuilds:
+  '@clerk/shared': true
+  '@parcel/watcher': true
+  '@swc/core': true
+  esbuild: true
+  sharp: true
+  unrs-resolver: true
+  workerd: true
+
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver
 
 onlyBuiltDependencies:
   - '@clerk/shared'
-
