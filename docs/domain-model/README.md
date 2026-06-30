@@ -8,43 +8,6 @@ It is not a database schema, an API contract, or an implementation guide. Its go
 
 SuperPlanify is a scheduling and coordination platform. The schedule is the central object, but the product also involves organizations, members, permissions, notifications, and eventually collaboration workflows.
 
-## Possible Future Concepts
-
-### Group
-
-A group represents a collection of members.
-
-Groups may be defined at different scopes:
-
-* organization-level groups;
-* schedule-level groups.
-
-Examples:
-
-* students;
-* teachers;
-* administration;
-* sports team;
-* driving group;
-* exam supervisors.
-
-Groups may later simplify schedule assignment, permissions, notifications, and approval workflows.
-
----
-
-### Activity
-
-An activity represents what happens during a time slot.
-
-This concept may later be separated from the time slot itself.
-
-For example:
-
-* a time slot defines `Monday 13:00–14:00`;
-* an activity defines `Driving theory lesson`.
-
-This separation may support more advanced workflows, such as proposing different activities for the same time slot or applying permissions at a finer level.
-
 ---
 
 ## Initial Concept Map
