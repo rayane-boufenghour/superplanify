@@ -14,3 +14,5 @@ export const {
   useRouter,
   getPathname,
 } = createNavigation(routing)
+
+export type Locale = (typeof routing.locales)[number]
