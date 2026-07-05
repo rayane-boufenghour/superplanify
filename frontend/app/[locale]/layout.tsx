@@ -4,8 +4,8 @@ import {NextIntlClientProvider} from 'next-intl'
 import {getMessages} from 'next-intl/server'
 import '../globals.css'
 import { clerkLocalizations } from '@/lib/clerk-localization'
-import { enUS } from '@clerk/localizations/en-US'
-import type {Locale} from '@/i18n/routing'
+import {hasLocale} from 'next-intl'
+import {routing} from '@/i18n/routing'
 
 export const metadata: Metadata = {
   title: 'SuperPlanify',
@@ -17,14 +17,15 @@ export default async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode
-  params: Promise<{locale: Locale}>
+  params: Promise<{locale: string}>
 }) {
-  const {locale} = await params
+  const {locale: rawLocale} = await params
+  const locale = hasLocale(routing.locales, rawLocale) ? rawLocale : routing.defaultLocale
   const messages = await getMessages()
 
   return (
-    <ClerkProvider localization={clerkLocalizations[locale] ?? {enUS}} afterSignOutUrl="/">
-      <html lang="en">
+    <ClerkProvider localization={clerkLocalizations[locale]} afterSignOutUrl="/">
+      <html lang={locale}>
         <body>
           <NextIntlClientProvider messages={messages}>
             {children}
