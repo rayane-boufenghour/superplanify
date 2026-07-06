@@ -1,0 +1,117 @@
+Project SuperPlanify {
+  database_type: 'PostgreSQL'
+  Note: 'SuperPlanify schema v1'
+}
+
+Table users {
+  id bigint [pk, increment]
+
+  auth_provider_id text [unique, not null]
+  email text [unique, not null]
+
+  first_name varchar(100)
+  last_name varchar(100)
+  username varchar(50) [unique]
+
+  preferences jsonb [not null, default: '{}']
+
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  last_seen_at timestamptz
+}
+
+Table organizations {
+  id bigint [pk, increment]
+
+  name varchar(100) [not null]
+  description text
+
+  created_by_user_id bigint [not null]
+
+  settings jsonb [not null, default: '{}']
+
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+}
+
+Ref: organizations.created_by_user_id > users.id
+
+Table organization_memberships {
+  org_id bigint [not null]
+  user_id bigint [not null]
+
+  role varchar(50) [not null, default: 'member']
+
+  created_at timestamptz [not null]
+
+  Indexes {
+    (org_id, user_id) [pk]
+    (user_id)
+  }
+}
+
+Ref: organization_memberships.user_id > users.id
+Ref: organization_memberships.org_id > organizations.id
+
+Table schedules {
+  id bigint [pk, increment]
+
+  org_id bigint [not null]
+
+  name varchar(100) [not null]
+  description text
+
+  settings jsonb [not null, default: '{}']
+
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+}
+
+Ref: schedules.org_id > organizations.id
+
+Table timeslots {
+  id bigint [pk, increment]
+
+  schedule_id bigint [not null]
+
+  starts_at timestamptz [not null]
+  ends_at timestamptz [not null]
+
+  name text
+  description text
+
+  metadata jsonb [not null, default: '{}']
+
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+
+  Indexes {
+    (schedule_id, starts_at)
+    (schedule_id, starts_at, ends_at)
+  }
+}
+
+Ref: timeslots.schedule_id > schedules.id
+
+Table invitations {
+  id bigint [pk, increment]
+
+  inviter_id bigint [not null]
+  invited_email text [not null]
+  org_id bigint [not null]
+
+  status varchar(30) [not null, default: 'pending']
+
+  created_at timestamptz [not null]
+  accepted_at timestamptz
+  declined_at timestamptz
+
+  Indexes {
+    (invited_email, org_id) [unique]
+    (org_id)
+    (inviter_id)
+  }
+}
+
+Ref: invitations.inviter_id > users.id
+Ref: invitations.org_id > organizations.id

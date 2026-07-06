@@ -13,8 +13,26 @@ SuperPlanify distinguishes between:
 * Each organization must define an authoritative timezone.
 * Each user may define a preferred display timezone.
 * Schedule times are stored as absolute instants.
-* The user interface displays schedule times using the most relevant timezone:
 
-  1. user timezone, if explicitly configured;
-  2. organization timezone;
-  3. application default fallback.
+## Display Priority
+
+When displaying schedule times, SuperPlanify uses the following priority:
+
+1. User timezone, if configured.
+2. Organization timezone.
+3. Browser local timezone as frontend fallback.
+
+## Design Decisions
+
+- User and organization timezones are stored inside JSONB columns.
+- User timezone is initialized during the first authenticated `/me` call when possible.
+- The frontend sends the browser-detected IANA timezone to the backend.
+- The backend validates the timezone using a .NET library.
+- No timezone validation is performed directly in the database.
+- No external API or custom timezone file is used for validation.
+
+## Rationale
+
+Timezone support is a foundational requirement for schedule accuracy.
+
+The system should store time-related data consistently while allowing users to view schedules in the timezone that makes the most sense for them.
