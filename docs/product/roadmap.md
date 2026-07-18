@@ -6,14 +6,13 @@
 
 - Organizations
 - Schedules
-- Time slots
+- Events
 - Member invitations
 - Read-only access
 
 ### Milestone 2
 
-- Organization roles
-- Schedule permissions
+- Role-based access control
 
 ### Milestone 3
 

@@ -1,0 +1,263 @@
+Project SuperPlanify {
+  database_type: 'PostgreSQL'
+  Note: 'SuperPlanify schema v1'
+}
+
+Enum event_type {
+  unique_event
+  recurring_event
+}
+
+Enum event_exception_type {
+  modified
+  cancelled
+}
+
+Enum custom_field_override_operation {
+  set
+  remove
+}
+
+Enum invitation_status {
+  pending
+  accepted
+  declined
+  revoked
+  expired
+}
+
+Enum organization_membership_role {
+  admin
+  member
+}
+
+Table users {
+  id bigint [pk, increment]
+
+  auth_provider_id text [unique, not null]
+  email text [unique, not null]
+
+  first_name varchar(100)
+  last_name varchar(100)
+  username varchar(50) [unique]
+
+  preferences jsonb [not null, default: '{}']
+
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  last_seen_at timestamptz
+}
+
+Table organizations {
+  id bigint [pk, increment]
+
+  name varchar(100) [not null]
+  description text
+
+  created_by_user_id bigint [not null]
+
+  settings jsonb [not null, default: '{}']
+
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+}
+
+Ref: organizations.created_by_user_id > users.id
+
+Table organization_memberships {
+  organization_id bigint [not null]
+  user_id bigint [not null]
+
+  role organization_membership_role [not null, default: 'member']
+
+  created_at timestamptz [not null]
+  invited_by_user_id bigint [not null]
+
+  Indexes {
+    (organization_id, user_id) [pk]
+    (user_id)
+  }
+}
+
+Ref: organization_memberships.user_id > users.id
+Ref: organization_memberships.organization_id > organizations.id
+Ref: organization_memberships.invited_by_user_id > users.id
+
+Table schedules {
+  id bigint [pk, increment]
+
+  organization_id bigint [not null]
+
+  name varchar(100) [not null]
+  description text
+
+  settings jsonb [not null, default: '{}']
+
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+
+  Indexes {
+    (organization_id)
+  }
+}
+
+Ref: schedules.organization_id > organizations.id
+
+Table activities {
+  id bigint [pk, increment]
+
+  organization_id bigint [not null]
+
+  title text [not null]
+  description text
+
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+
+  Indexes {
+    (organization_id)
+  }
+}
+
+Ref: activities.organization_id > organizations.id
+
+Table events {
+  id bigint [pk, increment]
+
+  schedule_id bigint [not null]
+  source_activity_id bigint
+
+  type event_type [not null]
+
+  title text [not null]
+  description text
+
+  starts_at timestamptz
+  ends_at timestamptz
+
+  occurrence_starts_at_local timestamp
+  occurrence_ends_at_local timestamp
+  recurrence_timezone text
+  recurrence_rule jsonb
+
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+
+  Indexes {
+    (schedule_id)
+    (schedule_id, starts_at)
+    (source_activity_id)
+  }
+}
+
+Ref: events.schedule_id > schedules.id
+Ref: events.source_activity_id > activities.id
+
+Table event_exceptions {
+  id bigint [pk, increment]
+
+  event_id bigint [not null]
+
+  original_occurrence_local timestamp [not null]
+  type event_exception_type [not null]
+
+  replacement_starts_at_local timestamp
+  replacement_ends_at_local timestamp
+
+  replacement_title text
+  replacement_description text
+
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+
+  Indexes {
+    (event_id, original_occurrence_local) [unique]
+  }
+}
+
+Ref: event_exceptions.event_id > events.id
+
+Table organization_custom_fields {
+  id bigint [pk, increment]
+
+  organization_id bigint [not null]
+
+  name varchar(100) [not null]
+
+  definition jsonb [not null]
+
+  Indexes {
+    (organization_id)
+    (organization_id, name) [unique]
+  }
+}
+
+Ref: organization_custom_fields.organization_id > organizations.id
+
+Table activities_custom_field_values {
+  activity_id bigint [not null]
+  custom_field_id bigint [not null]
+
+  value jsonb [not null]
+
+  Indexes {
+    (activity_id, custom_field_id) [pk]
+    (custom_field_id)
+  }
+}
+
+Ref: activities_custom_field_values.activity_id > activities.id
+Ref: activities_custom_field_values.custom_field_id > organization_custom_fields.id
+
+Table events_custom_field_values {
+  event_id bigint [not null]
+  custom_field_id bigint [not null]
+
+  value jsonb [not null]
+
+  Indexes {
+    (event_id, custom_field_id) [pk]
+    (custom_field_id)
+  }
+}
+
+Ref: events_custom_field_values.event_id > events.id
+Ref: events_custom_field_values.custom_field_id > organization_custom_fields.id
+
+Table event_exception_custom_field_overrides {
+  event_exception_id bigint [not null]
+  custom_field_id bigint [not null]
+
+  operation custom_field_override_operation [not null]
+  value jsonb
+
+  Indexes {
+    (event_exception_id, custom_field_id) [pk]
+    (custom_field_id)
+  }
+}
+
+Ref: event_exception_custom_field_overrides.event_exception_id > event_exceptions.id
+Ref: event_exception_custom_field_overrides.custom_field_id > organization_custom_fields.id
+
+Table invitations {
+  id bigint [pk, increment]
+
+  inviter_id bigint [not null]
+  invited_email text [not null]
+  organization_id bigint [not null]
+
+  status invitation_status [not null, default: 'pending']
+
+  created_at timestamptz [not null]
+  accepted_at timestamptz
+  declined_at timestamptz
+
+  Indexes {
+    (invited_email, organization_id) [unique]
+    (organization_id)
+  }
+}
+
+Ref: invitations.inviter_id > users.id
+Ref: invitations.organization_id > organizations.id

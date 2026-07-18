@@ -55,7 +55,7 @@ The user can:
 
 * browse available organizations;
 * open each schedule;
-* view upcoming time slots;
+* view upcoming events;
 * identify who created an event;
 * see who is participating.
 
@@ -80,7 +80,7 @@ An administrator creates a new organization.
 They can:
 
 * create one or more schedules;
-* define time slots;
+* define events;
 * invite members;
 * assign members to schedules.
 

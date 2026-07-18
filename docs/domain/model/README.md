@@ -19,13 +19,14 @@ User
 Organization
   ├── Members
   ├── Schedules
+  └── Activities
   ├── Invitations
   └── Timezone
 
 Schedule
-  └── Time Slots
+  └── Events
 
-Time Slot
+Event
   ├── Participants
   └── Published scheduling information
 
@@ -46,7 +47,7 @@ The first version of SuperPlanify focuses on:
 
 * organizations;
 * schedules;
-* time slots;
+* events;
 * invitations;
 * read-only member access.
 

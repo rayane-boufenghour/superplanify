@@ -8,7 +8,7 @@ Discussions should not become general-purpose chat rooms.
 
 Discussions should be attached to concrete objects such as:
 
-* a time slot;
+* an event;
 * a proposed change;
 * a poll;
 * an approval request.
