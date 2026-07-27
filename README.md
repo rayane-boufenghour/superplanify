@@ -73,7 +73,7 @@ docs/product/
 Defines the core business concepts used throughout the project.
 
 ```text
-docs/domain-model/
+docs/architecture/domain-model/
 ```
 
 ### Architecture Decision Records (ADR)
@@ -81,7 +81,15 @@ docs/domain-model/
 Documents important architectural decisions and the reasoning behind them.
 
 ```text
-docs/adr/
+docs/architecture/adr/
+```
+
+### Database
+
+Documents architectural decisions and conventions related to databases.
+
+```text
+docs/architecture/database/
 ```
 
 ---
