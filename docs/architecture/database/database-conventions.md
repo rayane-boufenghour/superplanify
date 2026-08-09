@@ -1,5 +1,15 @@
 # Database conventions
 
+## Auth
+
+Clerk subjects are used to map Clerk identities to application business data.
+
+Because user profile information is synchronized through webhooks, temporary inconsistencies may occur. For example, a username or email address may have been updated in Clerk but not yet reflected in the local database.
+
+These inconsistencies are not security-critical. Authentication relies exclusively on the Clerk subject contained in the authenticated session, which is then mapped to the application's internal user ID for all business logic.
+
+Consequently, profile attributes stored in the local database (such as username, first name, last name, and email) should be considered cached copies of Clerk's data. They are intended for querying, searching, and display, and may temporarily lag behind the identity provider.
+
 ## PostgreSQL enums
 
 PostgreSQL enums are appropriate for small, stable vocabularies whose values are controlled by the application and are unlikely to change frequently.

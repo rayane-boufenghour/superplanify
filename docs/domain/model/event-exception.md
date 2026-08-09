@@ -6,6 +6,8 @@ An event exception may only reference a `recurring_event`.
 
 This value is expressed in the recurring event’s IANA timezone and never changes when the occurrence is moved.
 
+All timestamps in event_exception are local and must be expressed in the recurring event's IANA timezone.
+
 ### Cancelled exception
 
 For `cancelled`:

@@ -125,7 +125,7 @@ Table events {
   id bigint [pk, increment]
 
   schedule_id bigint [not null]
-  source_activity_id bigint
+  source_activity_id bigint [not null]
 
   type event_type [not null]
 
@@ -187,7 +187,6 @@ Table organization_custom_fields {
   definition jsonb [not null]
 
   Indexes {
-    (organization_id)
     (organization_id, name) [unique]
   }
 }
@@ -202,7 +201,6 @@ Table activities_custom_field_values {
 
   Indexes {
     (activity_id, custom_field_id) [pk]
-    (custom_field_id)
   }
 }
 
@@ -217,7 +215,6 @@ Table events_custom_field_values {
 
   Indexes {
     (event_id, custom_field_id) [pk]
-    (custom_field_id)
   }
 }
 
@@ -233,7 +230,6 @@ Table event_exception_custom_field_overrides {
 
   Indexes {
     (event_exception_id, custom_field_id) [pk]
-    (custom_field_id)
   }
 }
 
@@ -254,8 +250,7 @@ Table invitations {
   declined_at timestamptz
 
   Indexes {
-    (invited_email, organization_id) [unique]
-    (organization_id)
+    (organization_id, invited_email) [unique]
   }
 }
 
