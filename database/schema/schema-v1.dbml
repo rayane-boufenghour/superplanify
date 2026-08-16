@@ -125,7 +125,7 @@ Table events {
   id bigint [pk, increment]
 
   schedule_id bigint [not null]
-  source_activity_id bigint [not null]
+  source_activity_id bigint
 
   type event_type [not null]
 
@@ -151,7 +151,6 @@ Table events {
 }
 
 Ref: events.schedule_id > schedules.id
-Ref: events.source_activity_id > activities.id
 
 Table event_exceptions {
   id bigint [pk, increment]

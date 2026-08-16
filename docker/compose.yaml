@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: superplanify-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-superplanify_dev}
+      POSTGRES_USER: ${POSTGRES_USER:-superplanify}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-superplanify_dev_password}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - superplanify_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-superplanify} -d ${POSTGRES_DB:-superplanify_dev}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+volumes:
+  superplanify_postgres_data:
