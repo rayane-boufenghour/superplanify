@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import Image from 'next/image'
 import { UserButton, useUser } from '@clerk/nextjs'
 import { Link, usePathname } from '@/i18n/routing'
@@ -8,9 +8,11 @@ import SidebarLink from '@/components/app/SidebarLink'
 import { useTranslations } from 'next-intl'
 import LogoutButton from '@/components/auth/LogoutButton'
 import LanguageSwitcher from '@/components/common/LanguageSwitcher'
+import {ThemeContext} from '@/components/landing/theme-context'
 
 export default function AppSidebar() {
     const tMembers = useTranslations('members')
+    const {theme, toggleTheme} = useContext(ThemeContext)
 
     const mainItems = [
         { label: tMembers('orgs'), href: '/app' },
@@ -29,7 +31,7 @@ export default function AppSidebar() {
     const userEmail = user?.primaryEmailAddress?.emailAddress ?? 'Account'
 
     const content = (
-        <div className="flex h-full flex-col bg-black text-white">
+        <div className="sp-dashboard-sidebar flex h-full flex-col">
             <Link href="/" className="flex items-center gap-3 px-6 py-6">
                 <Image
                     src="/images/superplanify_logo.png"
@@ -41,7 +43,7 @@ export default function AppSidebar() {
                 />
 
                 <span className="text-lg font-semibold tracking-tight">
-                    SuperPlanify
+                    Super<span className="sp-dashboard-brand-accent">Planify</span>
                 </span>
             </Link>
 
@@ -58,7 +60,7 @@ export default function AppSidebar() {
                     ))}
                 </div>
 
-                <div className="my-6 border-t border-blue-500/20" />
+                <div className="sp-dashboard-divider my-6 border-t" />
 
                 <div className="space-y-2">
                     {secondaryItems.map((item) => (
@@ -73,15 +75,24 @@ export default function AppSidebar() {
                 </div>
             </nav>
 
-            <div className="border-t border-blue-500/20 p-4">
-                <div className="mb-4">
-                    <LanguageSwitcher />
+            <div className="sp-dashboard-divider border-t p-4">
+                <div className="mb-4 flex items-center justify-between gap-2">
+                    <LanguageSwitcher variant="dashboard" />
+                    <button
+                        type="button"
+                        className="sp-dashboard-theme-toggle"
+                        onClick={toggleTheme}
+                        aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                        title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+                    >
+                        <span aria-hidden="true">{theme === 'dark' ? '☀' : '☾'}</span>
+                    </button>
                 </div>
 
-                <div className="mb-3 flex items-center gap-3 rounded-2xl border border-blue-500/20 bg-[#071226]/80 px-4 py-3">
+                <div className="sp-dashboard-account mb-3 flex items-center gap-3 rounded-2xl px-4 py-3">
                     <UserButton />
 
-                    <span className="truncate text-sm font-medium text-slate-200">
+                    <span className="sp-dashboard-muted truncate text-sm font-medium">
                         {userEmail}
                     </span>
                 </div>
@@ -93,7 +104,7 @@ export default function AppSidebar() {
 
     return (
         <>
-            <header className="sticky top-0 z-40 flex items-center justify-between border-b border-blue-500/20 bg-black/90 px-5 py-4 shadow-lg shadow-black/30 backdrop-blur lg:hidden">
+            <header className="sp-dashboard-mobile-header sticky top-0 z-40 flex items-center justify-between border-b px-5 py-4 backdrop-blur lg:hidden">
                 <Link href="/" className="flex items-center gap-3">
                     <Image
                         src="/images/superplanify_logo.png"
@@ -104,13 +115,13 @@ export default function AppSidebar() {
                         priority
                     />
 
-                    <span className="font-semibold text-white">
-                        SuperPlanify
+                    <span className="font-semibold">
+                        Super<span className="sp-dashboard-brand-accent">Planify</span>
                     </span>
                 </Link>
 
                 <button
-                    className="rounded-xl border border-blue-500/30 px-3 py-2 text-slate-200 transition hover:border-blue-400 hover:text-white"
+                    className="sp-dashboard-menu-button rounded-xl border px-3 py-2 transition"
                     type="button"
                     aria-label={isOpen ? 'Close menu' : 'Open menu'}
                     onClick={() => setIsOpen((current) => !current)}

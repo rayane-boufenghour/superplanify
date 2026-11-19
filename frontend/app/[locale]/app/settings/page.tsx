@@ -8,7 +8,7 @@ export default async function MemberHomePage() {
         {t("settings")}
       </h1>
 
-      <p className="mt-4 max-w-2xl leading-7 text-slate-300">
+      <p className="mt-4 max-w-2xl leading-7 sp-dashboard-muted">
         {t("settings_intro")}
       </p>
     </div>

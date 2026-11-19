@@ -36,16 +36,16 @@ export default function ContactForm({onSubmitSuccess}: ContactFormProps) {
 
   return (
     <form
-      className="rounded-3xl border border-blue-500/20 bg-[#071226]/80 p-8 shadow-2xl shadow-blue-950/40"
+      className="sp-contact-form"
       onSubmit={handleSubmit}
     >
       <div className="grid gap-6">
         <div>
-          <label className="mb-2 block text-sm font-semibold text-blue-200">
+          <label className="sp-field-label">
             {t('reason.label')}
           </label>
 
-          <select className="w-full rounded-2xl border border-blue-500/30 bg-black/70 px-5 py-4 text-slate-100 outline-none transition focus:border-cyan-300 focus:shadow-lg focus:shadow-cyan-400/20">
+          <select className="sp-form-control">
             <option>{t('reason.options.suggestions')}</option>
             <option>{t('reason.options.quote')}</option>
             <option>{t('reason.options.other')}</option>
@@ -53,7 +53,7 @@ export default function ContactForm({onSubmitSuccess}: ContactFormProps) {
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-semibold text-blue-200">
+          <label className="sp-field-label">
             {t('email.label')}
           </label>
 
@@ -61,12 +61,7 @@ export default function ContactForm({onSubmitSuccess}: ContactFormProps) {
             type="email"
             value={email}
             placeholder={t('email.placeholder')}
-            className={[
-              'w-full rounded-2xl border bg-black/70 px-5 py-4 text-slate-100 outline-none transition placeholder:text-slate-500 focus:shadow-lg',
-              errors.email
-                ? 'border-red-400/70 focus:border-red-300 focus:shadow-red-400/20'
-                : 'border-blue-500/30 focus:border-cyan-300 focus:shadow-cyan-400/20',
-            ].join(' ')}
+            className={`sp-form-control ${errors.email ? 'sp-form-error' : ''}`}
             onChange={(event) => {
               setEmail(event.target.value)
               if (errors.email) {
@@ -76,14 +71,14 @@ export default function ContactForm({onSubmitSuccess}: ContactFormProps) {
           />
 
           {errors.email && (
-            <p className="mt-2 text-sm font-medium text-red-300">
+            <p className="sp-form-error-text">
               {errors.email}
             </p>
           )}
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-semibold text-blue-200">
+          <label className="sp-field-label">
             {t('message.label')}
           </label>
 
@@ -91,12 +86,7 @@ export default function ContactForm({onSubmitSuccess}: ContactFormProps) {
             rows={7}
             value={message}
             placeholder={t('message.placeholder')}
-            className={[
-              'w-full resize-none rounded-2xl border bg-black/70 px-5 py-4 text-slate-100 outline-none transition placeholder:text-slate-500 focus:shadow-lg',
-              errors.message
-                ? 'border-red-400/70 focus:border-red-300 focus:shadow-red-400/20'
-                : 'border-blue-500/30 focus:border-cyan-300 focus:shadow-cyan-400/20',
-            ].join(' ')}
+            className={`sp-form-control sp-form-textarea ${errors.message ? 'sp-form-error' : ''}`}
             onChange={(event) => {
               setMessage(event.target.value)
               if (errors.message) {
@@ -106,7 +96,7 @@ export default function ContactForm({onSubmitSuccess}: ContactFormProps) {
           />
 
           {errors.message && (
-            <p className="mt-2 text-sm font-medium text-red-300">
+            <p className="sp-form-error-text">
               {errors.message}
             </p>
           )}
@@ -114,7 +104,7 @@ export default function ContactForm({onSubmitSuccess}: ContactFormProps) {
 
         <button
           type="submit"
-          className="rounded-2xl bg-blue-600 px-6 py-4 text-base font-bold text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-500 hover:shadow-blue-400/30"
+          className="sp-primary-cta sp-contact-submit"
         >
           {t('submit')}
         </button>

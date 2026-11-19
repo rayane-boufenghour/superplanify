@@ -1,52 +1,36 @@
-'use client'
-
-import {useState} from 'react'
-import {useTranslations} from 'next-intl'
+import {getTranslations} from 'next-intl/server'
 import Navbar from '@/components/landing/Navbar'
 import Footer from '@/components/landing/Footer'
-import ContactForm from '@/components/contact/ContactForm'
-import SuccessBanner from '@/components/ui/SuccessBanner'
+import ThemeShell from '@/components/landing/ThemeShell'
 
-export default function ContactPage() {
-  const t = useTranslations('contact')
-  const [submitted, setSubmitted] = useState(false)
-
-  return (
-    <main className="min-h-screen bg-[#020817] text-white">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.25),transparent_45%)]" />
-
-      <div className="relative z-10">
-        <Navbar />
-
-        {submitted && (
-          <SuccessBanner
-            message={t('form.success_message')}
-            onClose={() => setSubmitted(false)}
-          />
-        )}
-
-        <section className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div>
-            <p className="mb-4 text-sm font-semibold text-blue-300">
-              {t('eyebrow')}
-            </p>
-
-            <h1 className="text-4xl font-black tracking-tight sm:text-5xl md:text-6xl">
-              {t('title')}
-            </h1>
-
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-              {t('subtitle')}
-            </p>
-          </div>
-
-          <ContactForm onSubmitSuccess={() => setSubmitted(true)} />
-        </section>
-
-        <div className="mx-auto max-w-7xl px-6">
-          <Footer />
+export default async function ContactPage() {
+  const t = await getTranslations('contactV3')
+  return <ThemeShell>
+    <Navbar />
+    <main className="sp-subpage-main">
+      <section className="sp-container sp-contact-v3">
+        <div className="sp-contact-intro">
+          <span className="sp-section-label">{t('eyebrow')}</span>
+          <h1 className="sp-subpage-title">{t('title')}</h1>
+          <p>{t('subtitle')}</p>
         </div>
-      </div>
+        <div className="sp-contact-methods">
+          <article className="sp-contact-method sp-contact-method-primary">
+            <span className="sp-contact-method-icon" aria-hidden="true">✉</span>
+            <div><h2>{t('emailTitle')}</h2><p>{t('emailDescription')}</p>
+            <span className="sp-contact-placeholder">{t('emailPlaceholder')}</span>
+            <small>{t('emailNote')}</small></div>
+          </article>
+          <article className="sp-contact-method">
+            <span className="sp-contact-method-icon" aria-hidden="true">↗</span>
+            <div><h2>{t('socialTitle')}</h2><p>{t('socialDescription')}</p>
+              <div className="sp-social-list"><span>LinkedIn · {t('soon')}</span><span>X / Twitter · {t('soon')}</span></div>
+            </div>
+          </article>
+          <div className="sp-contact-later"><span aria-hidden="true">◷</span><div><strong>{t('demoTitle')}</strong><p>{t('demoDescription')}</p></div></div>
+        </div>
+      </section>
     </main>
-  )
+    <Footer />
+  </ThemeShell>
 }

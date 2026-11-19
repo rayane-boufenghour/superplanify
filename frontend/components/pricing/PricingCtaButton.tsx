@@ -16,12 +16,7 @@ export default function PricingCtaButton({
 }: PricingCtaButtonProps) {
   const {isSignedIn} = useAuth()
 
-  const className = [
-    'mt-10 inline-flex w-full items-center justify-center rounded-2xl px-5 py-3 text-sm font-bold transition',
-    highlighted
-      ? 'bg-blue-600 text-white hover:bg-blue-500'
-      : 'border border-blue-500/30 text-slate-200 hover:border-blue-400 hover:text-white',
-  ].join(' ')
+  const className = `sp-pricing-cta ${highlighted ? 'sp-pricing-cta-primary' : 'sp-pricing-cta-secondary'}`
 
   if (plan === 'enterprise') {
     return (

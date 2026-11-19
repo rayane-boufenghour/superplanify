@@ -1,0 +1,52 @@
+
+/* Member dashboard themes. Shared `sp-theme` preference with public ThemeShell.
+   Dark mode retains the existing navy palette; light mode changes surfaces only. */
+.sp-dashboard{
+  --db-bg:#020817;--db-panel:#071226;--db-sidebar:#000000;--db-text:#ffffff;
+  --db-muted:#cbd5e1;--db-border:rgba(59,130,246,.20);
+  --db-link:#cbd5e1;--db-link-hover:#ffffff;--db-link-hover-bg:rgba(59,130,246,.10);
+  --db-link-active-bg:rgba(37,99,235,.20);--db-link-active-border:rgba(96,165,250,.40);
+  --db-accent:#93c5fd;--db-account:rgba(7,18,38,.80);
+  --sp-border:#31516b;--sp-surface:#0d2033;--sp-text:#f0f7fa;
+  --sp-soft:#17384b;--sp-green:#46dbb3;
+  min-height:100vh;color:var(--db-text);background:var(--db-bg);
+  font-family:"DM Sans",Aptos,Helvetica,Arial,sans-serif;
+}
+.sp-dashboard[data-theme="light"]{
+  --db-bg:#f5f8fc;--db-panel:#ffffff;--db-sidebar:#ffffff;--db-text:#193347;
+  --db-muted:#617485;--db-border:#dae6ed;
+  --db-link:#476074;--db-link-hover:#153c57;--db-link-hover-bg:#eaf5f8;
+  --db-link-active-bg:#e1f3ee;--db-link-active-border:#9bd8c8;
+  --db-accent:#1879b6;--db-account:#f3f8fa;
+  --sp-border:#d1e3e9;--sp-surface:#ffffff;--sp-text:#193347;
+  --sp-soft:#e1f3ee;--sp-green:#008f79;
+}
+.sp-dashboard-main{position:relative;min-height:100vh;background:var(--db-bg);color:var(--db-text)}
+.sp-dashboard-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at top,rgba(37,99,235,.22),transparent 45%)}
+.sp-dashboard[data-theme="light"] .sp-dashboard-glow{background:radial-gradient(circle at top,rgba(38,120,217,.07),transparent 48%)}
+.sp-dashboard-panel{border:1px solid var(--db-border);background:var(--db-panel);box-shadow:0 15px 35px rgba(2,8,23,.14)}
+.sp-dashboard[data-theme="light"] .sp-dashboard-panel{box-shadow:0 12px 30px rgba(28,74,100,.06)}
+.sp-dashboard-eyebrow{color:var(--db-accent)}
+.sp-dashboard-muted{color:var(--db-muted)}
+.sp-dashboard-sidebar{background:var(--db-sidebar);color:var(--db-text);border-color:var(--db-border)}
+.sp-dashboard-divider{border-color:var(--db-border)}
+.sp-dashboard-account{border:1px solid var(--db-border);background:var(--db-account)}
+.sp-dashboard-link{border:1px solid transparent;color:var(--db-link)}
+.sp-dashboard-link:hover{border-color:var(--db-border);background:var(--db-link-hover-bg);color:var(--db-link-hover)}
+.sp-dashboard-link-active{border-color:var(--db-link-active-border);background:var(--db-link-active-bg);color:var(--db-text);box-shadow:0 5px 14px rgba(32,116,178,.08)}
+.sp-dashboard-mobile-header{border-color:var(--db-border);background:var(--db-sidebar);color:var(--db-text);box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.sp-dashboard-menu-button{border-color:var(--db-border);color:var(--db-text)}
+.sp-dashboard-menu-button:hover{border-color:var(--sp-green);background:var(--sp-soft)}
+.sp-dashboard-theme-toggle{display:grid;place-items:center;flex:none;width:42px;height:42px;border:1px solid var(--db-border);border-radius:12px;background:var(--sp-surface);color:var(--db-text);font-size:20px;cursor:pointer;transition:border-color .2s,background .2s}
+.sp-dashboard-theme-toggle:hover{border-color:var(--sp-green);background:var(--sp-soft)}
+.sp-dashboard-theme-toggle:focus-visible{outline:3px solid var(--sp-green);outline-offset:2px}
+.sp-dashboard .sp-language-dashboard{--sp-border:var(--db-border);--sp-surface:var(--db-panel);--sp-text:var(--db-text);--sp-soft:var(--db-link-hover-bg);--sp-green:var(--db-accent);background:var(--db-panel);border-color:var(--db-border);color:var(--db-text)}
+.sp-dashboard .sp-language-dashboard:hover{background:var(--db-link-hover-bg);border-color:var(--db-accent)}
+.sp-dashboard aside{border-color:var(--db-border);box-shadow:0 8px 25px rgba(0,0,0,.12)}
+.sp-dashboard :is(a,button):focus-visible{outline:3px solid var(--sp-green);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.sp-dashboard *{transition:none!important;animation:none!important}}
+
+
+/* Same Super/Planify wordmark treatment as the public navbar. */
+.sp-dashboard-brand-accent { color: #46dbb3; }
+.sp-dashboard[data-theme="light"] .sp-dashboard-brand-accent { color: #008f79; }

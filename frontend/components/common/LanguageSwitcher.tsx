@@ -2,88 +2,24 @@
 
 import {useLocale} from 'next-intl'
 import {usePathname, useRouter} from '@/i18n/routing'
-import {useTransition, useState, useRef, useEffect} from 'react'
+import {useTransition} from 'react'
 
-type LocaleCode = 'en' | 'fr'
-
-const availableLocales: Array<{code: LocaleCode; name: string}> = [
-  {code: 'en', name: 'English'},
-  {code: 'fr', name: 'Français'},
-]
-
-export default function LanguageSwitcher() {
-  const locale = useLocale() as LocaleCode
-  const router = useRouter()
+export default function LanguageSwitcher({variant = 'public'}: {variant?: 'public' | 'dashboard'}) {
+  const locale = useLocale()
   const pathname = usePathname()
-  const [isPending, startTransition] = useTransition()
-  const [isOpen, setIsOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement | null>(null)
+  const router = useRouter()
+  const [pending, startTransition] = useTransition()
 
-  const selectedLocale = availableLocales.find(item => item.code === locale)
-
-  const changeLocale = (newLocale: LocaleCode) => {
-    setIsOpen(false)
-
-    startTransition(() => {
-      router.replace(pathname, {locale: newLocale})
-    })
-  }
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false)
-      }
-    }
-
-    document.addEventListener('click', handleClickOutside)
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside)
-    }
-  }, [])
-
-  return (
-    <div ref={dropdownRef} className="relative">
-      <button
-        className="flex h-10 items-center gap-2 rounded-xl border border-blue-500/30 bg-black px-3 text-sm font-medium text-white transition hover:border-blue-400 disabled:opacity-60 md:min-w-36 md:justify-between"
-        type="button"
-        disabled={isPending}
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <div className="flex items-center gap-1 md:hidden">
-          <span>🌐</span>
-          <span className="text-xs">⌄</span>
-        </div>
-
-        <div className="hidden w-full items-center justify-between gap-3 md:flex">
-          <span>{selectedLocale?.name}</span>
-          <span className="text-xs">⌄</span>
-        </div>
-      </button>
-
-      {isOpen && (
-        <div className="absolute right-0 top-12 z-50 min-w-40 overflow-hidden rounded-xl border border-blue-500/30 bg-black shadow-lg shadow-black/40">
-          {availableLocales.map(localeItem => (
-            <button
-              key={localeItem.code}
-              className={[
-                'block w-full px-4 py-3 text-left text-sm transition',
-                localeItem.code === locale
-                  ? 'bg-blue-600/30 text-white'
-                  : 'text-slate-300 hover:bg-blue-600/20 hover:text-white',
-              ].join(' ')}
-              type="button"
-              onClick={() => changeLocale(localeItem.code)}
-            >
-              {localeItem.name}
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  )
+  return <div className={`sp-language-control ${variant === 'dashboard' ? 'sp-language-dashboard' : ''}`}>
+    <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c-5 5-5 13 0 18M12 3c5 5 5 13 0 18"/></svg>
+    <span className="sp-language-code" aria-hidden="true">{locale.toUpperCase()}</span>
+    <select aria-label={locale === 'fr' ? 'Choisir la langue' : 'Choose language'} value={locale} disabled={pending} onChange={event => {
+      const nextLocale = event.target.value as 'en' | 'fr'
+      startTransition(() => router.replace(pathname, {locale: nextLocale}))
+    }}>
+      <option value="en">EN</option>
+      <option value="fr">FR</option>
+    </select>
+    <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="m6 9 6 6 6-6"/></svg>
+  </div>
 }

@@ -1,0 +1,209 @@
+/* SuperPlanify navbar: conventional, left-grouped navigation inspired by the
+   positioning of enterprise site navbars (not their appearance).
+   Logo and primary links stay together; account controls align to the right.
+   No absolute positioning, centered grid columns or transform-based layout. */
+.sp-landing .sp-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--sp-bg) 90%, transparent);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--sp-border);
+}
+
+.sp-landing .sp-nav-inner {
+  display: flex;
+  align-items: center;
+  min-height: 78px;
+  gap: clamp(25px, 3vw, 52px);
+}
+
+.sp-landing .sp-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  flex: 0 0 auto;
+  width: max-content;
+  color: var(--sp-text);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -.8px;
+  white-space: nowrap;
+}
+.sp-landing .sp-brand > span > span { color: var(--sp-green); }
+.sp-landing .sp-brand-logo {
+  display: block;
+  width: 36px;
+  height: 36px;
+  flex: none;
+  object-fit: contain;
+}
+
+.sp-landing .sp-nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  flex: 0 0 auto;
+  position: static;
+  transform: none;
+}
+.sp-landing .sp-nav-links a {
+  padding: 11px 14px;
+  border-radius: 12px;
+  color: var(--sp-muted);
+  font-size: 16px;
+  font-weight: 750;
+  white-space: nowrap;
+  transition: color .2s, background .2s, transform .2s;
+}
+.sp-landing .sp-nav-links a:hover {
+  color: var(--sp-green);
+  background: var(--sp-soft);
+  transform: translateY(-1px);
+}
+
+.sp-landing .sp-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-left: auto;
+  min-width: 0;
+  flex: 0 0 auto;
+}
+.sp-landing .sp-theme-toggle,
+.sp-landing .sp-menu-button {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--sp-border);
+  border-radius: 12px;
+  background: var(--sp-surface);
+  color: var(--sp-text);
+  cursor: pointer;
+  font-size: 21px;
+  transition: transform .2s, border-color .2s, background .2s;
+}
+.sp-landing .sp-theme-toggle:hover,
+.sp-landing .sp-menu-button:hover {
+  transform: translateY(-2px);
+  border-color: var(--sp-green);
+  background: var(--sp-soft);
+}
+.sp-landing .sp-menu-button { display: none; }
+
+.sp-landing .sp-dashboard-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  white-space: nowrap;
+  padding: 11px 16px;
+  border-radius: 12px;
+  background: linear-gradient(110deg, #237fdb, #0ab991);
+  color: white !important;
+  font-size: 13px;
+  font-weight: 850;
+  box-shadow: 0 7px 20px #0baf943b;
+  transition: transform .2s, box-shadow .2s;
+}
+.sp-landing .sp-dashboard-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px #0baf9455;
+}
+
+.sp-landing .sp-mobile-menu { display: none; }
+.sp-landing .sp-desktop-auth button,
+.sp-landing .sp-mobile-auth button {
+  font-family: inherit !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  transition: transform .18s, box-shadow .18s, background-color .18s, border-color .18s, color .18s !important;
+}
+.sp-landing .sp-desktop-auth button:first-child,
+.sp-landing .sp-mobile-auth button:first-child {
+  color: var(--sp-text) !important;
+  border-color: var(--sp-border) !important;
+}
+.sp-landing .sp-desktop-auth button.bg-blue-600,
+.sp-landing .sp-mobile-auth button.bg-blue-600 {
+  background: #147bd2 !important;
+  color: white !important;
+}
+.sp-landing .sp-desktop-auth button:hover,
+.sp-landing .sp-mobile-auth button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px #1279bd26;
+}
+.sp-landing .sp-desktop-auth button:first-child:hover,
+.sp-landing .sp-mobile-auth button:first-child:hover {
+  border-color: var(--sp-green) !important;
+  background: var(--sp-soft) !important;
+}
+.sp-landing .sp-desktop-auth button.bg-blue-600:hover,
+.sp-landing .sp-mobile-auth button.bg-blue-600:hover {
+  background: #0966b9 !important;
+  color: white !important;
+}
+
+/* The signed-in and signed-out right-hand groups have different widths.
+   Hide desktop links before they can collide with either group. */
+@media (max-width: 1180px) {
+  .sp-landing .sp-nav-inner { gap: 16px; }
+  .sp-landing .sp-nav-links,
+  .sp-landing .sp-desktop-auth { display: none; }
+  .sp-landing .sp-menu-button { display: grid; }
+  .sp-landing .sp-mobile-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 18px 0 24px;
+    border-top: 1px solid var(--sp-border);
+  }
+  .sp-landing .sp-mobile-menu > a:not(.sp-dashboard-link) {
+    color: var(--sp-text);
+    font-weight: 750;
+    padding: 6px 0;
+  }
+  .sp-landing .sp-mobile-auth { padding-top: 8px; }
+  .sp-landing .sp-mobile-menu .sp-dashboard-link { align-self: flex-start; }
+}
+@media (max-width: 760px) {
+  .sp-landing .sp-nav-inner { min-height: 68px; }
+  .sp-landing .sp-brand { font-size: 18px; }
+  .sp-landing .sp-brand-logo { width: 31px; height: 31px; }
+  .sp-landing .sp-nav-actions { gap: 6px; }
+  .sp-landing .sp-nav-actions > .sp-dashboard-link { display: none; }
+}
+@media (max-width: 410px) {
+  .sp-landing .sp-brand { font-size: 15px; gap: 5px; }
+  .sp-landing .sp-brand-logo { width: 27px; height: 27px; }
+  .sp-landing .sp-theme-toggle,
+  .sp-landing .sp-menu-button { width: 34px; height: 36px; }
+  .sp-landing .sp-nav-actions { gap: 5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sp-landing .sp-nav-links a:hover,
+  .sp-landing .sp-theme-toggle:hover,
+  .sp-landing .sp-menu-button:hover,
+  .sp-landing .sp-dashboard-link:hover,
+  .sp-landing .sp-desktop-auth button:hover,
+  .sp-landing .sp-mobile-auth button:hover { transform: none; }
+}
+
+/* Signed-in logout action: override generic landing auth button hover styles. */
+.sp-landing .sp-desktop-auth button.sp-logout-button:hover,
+.sp-landing .sp-mobile-auth button.sp-logout-button:hover {
+  color: #fecaca !important;
+  border-color: #f87171 !important;
+  background: rgba(239, 68, 68, .13) !important;
+  box-shadow: 0 8px 20px rgba(239, 68, 68, .14) !important;
+}
+.sp-landing[data-theme="light"] .sp-desktop-auth button.sp-logout-button:hover,
+.sp-landing[data-theme="light"] .sp-mobile-auth button.sp-logout-button:hover {
+  color: #b91c1c !important;
+  background: #fef2f2 !important;
+}
