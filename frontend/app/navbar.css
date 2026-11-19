@@ -207,3 +207,11 @@
   color: #b91c1c !important;
   background: #fef2f2 !important;
 }
+
+.sp-landing .sp-dashboard-link:hover,
+.sp-landing .sp-dashboard-link:focus-visible {
+  background: linear-gradient(110deg, #1c6fc3, #079f7d);
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px #0baf9455;
+}
